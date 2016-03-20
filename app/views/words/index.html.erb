@@ -1,5 +1,15 @@
+<%form_tag words_path%>
+	<%text_field_tag "search"%>
+<%end%>
 <%@words.each do |w|%>
 	<h1>
 		<%=w.palabra%> <br>
 	</h1>
+<%end%>
+<%unless @tuplas.nil?%>
+	<%@tuplas.each do |w|%>
+		<h1>
+			<%=w.palabra%> <br>
+		</h1>
+	<%end%>
 <%end%>
