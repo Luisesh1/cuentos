@@ -1,0 +1,12 @@
+<%fotos=[]%>
+<%=@tuplas.nil?%>
+<%unless @tuplas.nil?%>
+	<%@tuplas.each do |w|%>
+		<%w.images.each do |i|%> 
+			<%fotos.push i.foto.url%>
+		<%end%>
+	<%end%>
+	<%fotos.uniq.each do |f|%>
+		<%=image_tag f%>
+	<%end%>
+<%end%>

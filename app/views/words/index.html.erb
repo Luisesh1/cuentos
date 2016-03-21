@@ -1,15 +1,7 @@
-<%form_tag words_path%>
-	<%text_field_tag "search"%>
+<%=form_tag words_path ,:method => "get",remote:true,id:"busqueda" do%>
+	<%=text_field_tag :search,params[:search],id:"target"%>
+	<%=submit_tag "buscar",:name=>nil%>
 <%end%>
-<%@words.each do |w|%>
-	<h1>
-		<%=w.palabra%> <br>
-	</h1>
-<%end%>
-<%unless @tuplas.nil?%>
-	<%@tuplas.each do |w|%>
-		<h1>
-			<%=w.palabra%> <br>
-		</h1>
-	<%end%>
-<%end%>
+<div id="panel_para_fotos">
+	<%=render "fotoPanel"%>
+</div>

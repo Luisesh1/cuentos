@@ -29,7 +29,7 @@ class ImagesController < ApplicationController
     respond_to do |format|
       if @image.save
         save_palabras(@image,params[:palabras])
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
+        format.html { redirect_to @image, notice: 'Image was successfully created.'}
         format.json { render :show, status: :created, location: @image }
       else
         format.html { render :new }
@@ -43,6 +43,8 @@ class ImagesController < ApplicationController
   def update
     respond_to do |format|
       if @image.update(image_params)
+        delete_ref  (@image)
+        save_palabras(@image,params[:palabras])
         format.html { redirect_to @image, notice: 'Image was successfully updated.' }
         format.json { render :show, status: :ok, location: @image }
       else
@@ -73,9 +75,9 @@ class ImagesController < ApplicationController
       params.require(:image).permit(:titulo,:foto)
     end
     def save_palabras(imagen,palabras)
-
       apal = palabras.split(",")
       apal.each do |palabra|
+        palabra.strip!
         aux=Word.find_by(palabra:"#{palabra}")
         unless aux.nil?
           imagen.image_words.create(word_id: aux.id)
@@ -83,5 +85,8 @@ class ImagesController < ApplicationController
           imagen.words.create(palabra:"#{palabra}")
         end
       end 
+    end
+    def delete_ref  (imagen)
+      imagen.image_words.delete_all
     end
 end
