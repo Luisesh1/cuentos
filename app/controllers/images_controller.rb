@@ -74,7 +74,7 @@ class ImagesController < ApplicationController
     def image_params
       params.require(:image).permit(:titulo,:foto)
     end
-    def save_palabras(imagen,palabras)
+     def save_palabras(imagen,palabras)
       apal = palabras.split(",")
       apal.each do |palabra|
         palabra.strip!

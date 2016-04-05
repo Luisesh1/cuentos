@@ -3,7 +3,9 @@
 one:
   titulo: MyString
   autor: MyString
+  hombre: false
 
 two:
   titulo: MyString
   autor: MyString
+  hombre: false

@@ -7,6 +7,7 @@
     <tr>
       <th>Titulo</th>
       <th>Autor</th>
+      <th>Hombre</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= story.titulo %></td>
         <td><%= story.autor %></td>
+        <td><%= story.hombre %></td>
         <td><%= link_to 'Show', story %></td>
         <td><%= link_to 'Edit', edit_story_path(story) %></td>
         <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>

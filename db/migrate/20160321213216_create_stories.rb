@@ -3,6 +3,7 @@ class CreateStories < ActiveRecord::Migration
     create_table :stories do |t|
       t.string :titulo
       t.string :autor
+      t.boolean :hombre
 
       t.timestamps null: false
     end

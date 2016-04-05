@@ -10,5 +10,19 @@
   <%= @story.autor %>
 </p>
 
-<%= link_to 'Edit', edit_story_path(@story) %> |
-<%= link_to 'Back', stories_path %>
+<p>
+  <strong>Hombre:</strong>
+  <%= @story.hombre %>
+</p>
+<p>
+  <strong>Escena:</strong>
+</p>
+<%@story.scenes.each do |scene|%>
+  <%=scene.titulo%> </br>
+
+  <td><%= link_to 'Show', [@story,scene] %></td>
+        <td><%= link_to 'Edit', edit_story_path([@story,scene]) %></td>
+        <td><%= link_to 'Destroy', [@story,scene], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<%end%>
+<%=render "scenes/form"%>
+

@@ -10,6 +10,8 @@ class StoriesController < ApplicationController
   # GET /stories/1
   # GET /stories/1.json
   def show
+    @scene=Scene.new 
+    @images= Word.search(params[:search])
   end
 
   # GET /stories/new
@@ -19,6 +21,8 @@ class StoriesController < ApplicationController
 
   # GET /stories/1/edit
   def edit
+    @scenes= @story.scenes.all
+    @scene=@story.scenes.new
   end
 
   # POST /stories
@@ -69,6 +73,6 @@ class StoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def story_params
-      params.require(:story).permit(:titulo, :autor)
+      params.require(:story).permit(:titulo, :autor, :hombre)
     end
 end

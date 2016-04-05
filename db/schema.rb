@@ -11,7 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321204100) do
+ActiveRecord::Schema.define(version: 20160322011734) do
+
+  create_table "background_words", force: :cascade do |t|
+    t.integer  "background_id"
+    t.integer  "word_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "background_words", ["background_id"], name: "index_background_words_on_background_id"
+  add_index "background_words", ["word_id"], name: "index_background_words_on_word_id"
+
+  create_table "backgrounds", force: :cascade do |t|
+    t.string   "titulo"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "foto_file_name"
+    t.string   "foto_content_type"
+    t.integer  "foto_file_size"
+    t.datetime "foto_updated_at"
+  end
+
+  create_table "backgrounds_words", force: :cascade do |t|
+    t.integer  "backgroud_id"
+    t.integer  "word_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "backgrounds_words", ["backgroud_id"], name: "index_backgrounds_words_on_backgroud_id"
+  add_index "backgrounds_words", ["word_id"], name: "index_backgrounds_words_on_word_id"
 
   create_table "image_words", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -34,12 +64,33 @@ ActiveRecord::Schema.define(version: 20160321204100) do
     t.datetime "foto_updated_at"
   end
 
+  create_table "scene_images", force: :cascade do |t|
+    t.integer  "scene_id"
+    t.integer  "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "scene_images", ["image_id"], name: "index_scene_images_on_image_id"
+  add_index "scene_images", ["scene_id"], name: "index_scene_images_on_scene_id"
+
+  create_table "scenes", force: :cascade do |t|
+    t.string   "titulo"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "story_id"
+    t.integer  "background_id"
+  end
+
+  add_index "scenes", ["background_id"], name: "index_scenes_on_background_id"
+  add_index "scenes", ["story_id"], name: "index_scenes_on_story_id"
+
   create_table "stories", force: :cascade do |t|
     t.string   "titulo"
     t.string   "autor"
+    t.boolean  "hombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean  "es_hombre"
   end
 
   create_table "words", force: :cascade do |t|

@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  resources :backgrounds
+  resources :stories do
+     resources :scenes
+  end
+ 
   get 'words',to:"words#index",as: "words"
   post 'searches',to:"words#searches",as: "searches"
   resources :images
-  resources :stories
-  root 'words#index'
+  root 'stories#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
