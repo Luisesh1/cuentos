@@ -33,16 +33,6 @@ ActiveRecord::Schema.define(version: 20160322011734) do
     t.datetime "foto_updated_at"
   end
 
-  create_table "backgrounds_words", force: :cascade do |t|
-    t.integer  "backgroud_id"
-    t.integer  "word_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "backgrounds_words", ["backgroud_id"], name: "index_backgrounds_words_on_backgroud_id"
-  add_index "backgrounds_words", ["word_id"], name: "index_backgrounds_words_on_word_id"
-
   create_table "image_words", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

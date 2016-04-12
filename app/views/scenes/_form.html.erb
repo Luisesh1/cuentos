@@ -12,13 +12,15 @@
   <% end %>
   <%=f.label :titulo%>
   <%=f.text_field :titulo%>
- 
+  <%=hidden_field :trans, id:"trans"%>
   <div id="representacion" style="border-style: solid; height: 200px;">
-    
+  
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
  <%=render "words/fotoPanelBus"%>
+
+
  

@@ -3,35 +3,40 @@
 	var fondos = [];
 
 </script>
-<%fotos=[]%>
-<%fondos=[]%>
-<%=@images.nil?%>
-<%unless @images.nil?%>
-	<%@images.each do |w|%>
-		<%w.images.each do |i|%> 
-			<%fotos.push i%>
-		<%end%>
-		<%w.backgrounds.each do |i|%> 
-			<%fondos.push i%>
-		<%end%>
+<div id="ventanaImagenes">
+	<%fotos=[]%>
+	<%fondos=[]%>
+	<%=@images.nil?%>
+	<%unless @images.nil?%>
+		<%@images.each do |w|%>
+			<%w.images.each do |i|%> 
+				<%fotos.push i%>
+			<%end%>
+			<%w.backgrounds.each do |i|%> 
+				<%fondos.push i%>
+			<%end%>
 
+		<%end%>
+		<h1>fondos</h1>
+		<%fondos.uniq.each do |f|%>
+			<%=image_tag f.foto.url(:item), id:"back_#{f.id}"%>
+			<script type="text/javascript">
+				foo = new objImagen();
+				foo.setAll("<%=f.foto.url%>","<%=f.foto.url(:background)%>","<%=f.foto.url(:item)%>",<%=f.id%>,"<%="fondo"%>");
+				fondos.push (foo);
+			</script>
+		<%end%>
+		<h1>imagenes</h1>
+		<%fotos.uniq.each do |f|%>
+			<%=image_tag f.foto.url, id:"img_#{f.id}"%>
+			<script type="text/javascript">
+				foo = new objImagen();
+				foo.setAll("<%=f.foto.url%>","<%=f.foto.url(:background)%>","<%=f.foto.url(:item)%>",<%=f.id%>,"<%="imagen"%>");
+				fotos.push (foo);
+			</script>
+		<%end%>
 	<%end%>
-	<h1>fondos</h1>
-	<%fondos.uniq.each do |f|%>
-		<%=image_tag f.foto.url :item, id:"back_#{f.id}"%>
-		<script type="text/javascript">
-			foo = new objImagen();
-			foo.setAll("<%=f.foto.url%>","<%=f.foto.url(:background)%>","<%=f.foto.url(:item)%>",<%=f.id%>,"<%="fondo"%>");
-			fondos.push (foo);
-		</script>
-	<%end%>
-	<h1>imagenes</h1>
-	<%fotos.uniq.each do |f|%>
-		<%=image_tag f.foto.url, id:"img_#{f.id}"%>
-		<script type="text/javascript">
-			foo = new objImagen();
-			foo.setAll("<%=f.foto.url%>","<%=f.foto.url(:background)%>","<%=f.foto.url(:item)%>",<%=f.id%>,"<%="imagen"%>");
-			fotos.push (foo);
-		</script>
-	<%end%>
-<%end%>
+</div>
+<script type="text/javascript">
+	listerners();
+</script>

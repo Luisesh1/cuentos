@@ -30,6 +30,8 @@ class ScenesController < ApplicationController
 
     respond_to do |format|
       if @scene.save
+        #JSON.parse(string)
+        #scene_images
         format.html { redirect_to @story, notice: 'Scene was successfully created.' }
         format.json { render :show, status: :created, location: @story }
       else

@@ -15,12 +15,6 @@
 //= require turbolinks
 //= require_tree .
 
-$(function(){
-$( "#target" ).keyup(function() {
- 	$("#busqueda").submit();
-});
-});
-
 var objImagen = function(){
 	var original;
 	var background;
